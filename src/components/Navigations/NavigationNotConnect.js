@@ -5,12 +5,29 @@ import {
   faSignOut,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectConnect } from "../../redux/selector";
+import { Link, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectConnect, selectEmail, selectToken } from "../../redux/selector";
+import { setConnect, setEmail, setToken } from "../../redux/features/user";
 
 const NavigationNotConnect = (props) => {
+
+  //REDUX
   const status = useSelector(selectConnect);
+  const token = useSelector(selectToken);
+  const connect = useSelector(selectConnect);
+  const email = useSelector(selectEmail)
+  const dispatch = useDispatch()
+
+
+
+  const signOut = () => {
+    localStorage.clear();
+    dispatch(setConnect(false))
+    dispatch(setToken(null))
+    dispatch(setEmail(null))
+  }
+
 
   return (
     <nav className="main-nav">
@@ -31,7 +48,7 @@ const NavigationNotConnect = (props) => {
               </div>
               <span>Loic</span>
             </div>
-            <span className="button-sign-out">
+            <span onClick={signOut} className="button-sign-out">
               {" "}
               Sign out
               <FontAwesomeIcon className="sign-out" icon={faSignOut} />

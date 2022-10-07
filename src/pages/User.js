@@ -1,30 +1,18 @@
 import React, { useState } from "react";
-//import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import NavigationNotConnect from "../components/Navigations/NavigationNotConnect";
-//import { useSelector } from "react-redux";
-//import { selectToken } from "../redux/selector";
+import { useSelector } from "react-redux";
+import { selectToken } from "../redux/selector";
 import Profil from "../components/Forms/Profil";
 
 const User = ({ cancel }) => {
-  //const token = useSelector(selectToken);
+  const token = useSelector(selectToken);
   const [displayForm, setDisplayForm] = useState(false);
   // const [userName, setUsername] = useState("");
   // const [userLastName, setUserLastName] = useState("");
 
-  // useEffect(() => {
-  //   const url = "http://localhost:3001/api/v1/user/profile";
-
-  //   url
-  //     .post(
-  //       url,
-  //       {},
-  //       { header: { Authorization: `Bearer` + localStorage.getItem("token") } }
-  //     )
-  //     .then((res) => {});
-  // }, []);
-
-  //if (!token) return <Redirect to="sign-in" />;
+  if (!token) return <Redirect to="/" />;
   return (
     <div>
       <NavigationNotConnect img="../pictures/argentBankLogo.png" />
