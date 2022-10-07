@@ -1,25 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { userLogin } from "../userAction";
 
-const user = createSlice({
+// initialize userToken from local storage
+const userToken = localStorage.getItem("userToken")
+  ? localStorage.getItem("userToken")
+  : null;
+
+const initialState = {
+  loading: false,
+  userInfo: {}, // for user object
+  userToken,
+  error: null,
+  success: false, // for monitoring the registration process.
+};
+
+const userSlice = createSlice({
   name: "user",
-  initialState: {
-    email: "",
-    token: "",
-    connect: "",
-  },
-  reducers: {
-    setEmail: (state, action) => {
-      state.email = action.payload;
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [userLogin.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
     },
-    setToken: (state, action) => {
-      state.token = action.payload;
+    [userLogin.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.userInfo = payload;
+      state.userToken = payload.userToken;
     },
-    setConnect: (state, action) => {
-      state.connect = action.payload;
+    [userLogin.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
     },
   },
 });
 
-export const { setEmail, setToken, setConnect } = user.actions;
-
-export const userReducer = user.reducer;
+export const userReducer = userSlice.reducer;

@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
 import Footer from "../components/Footer/Footer";
 import NavigationNotConnect from "../components/Navigations/NavigationNotConnect";
 import Login from "../components/Forms/Login";
@@ -13,7 +12,7 @@ const SignIn = () => {
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <FontAwesomeIcon icon={faUserCircle} />
-          <Login/>
+          <Login />
         </section>
       </main>
       <Footer />

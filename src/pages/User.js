@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import NavigationNotConnect from "../components/Navigations/NavigationNotConnect";
-import { useSelector } from "react-redux";
-import { selectToken } from "../redux/selector";
 import Profil from "../components/Forms/Profil";
 
 const User = ({ cancel }) => {
-  const token = useSelector(selectToken);
   const [displayForm, setDisplayForm] = useState(false);
   // const [userName, setUsername] = useState("");
   // const [userLastName, setUserLastName] = useState("");
 
-  if (!token) return <Redirect to="/" />;
   return (
     <div>
       <NavigationNotConnect img="../pictures/argentBankLogo.png" />
