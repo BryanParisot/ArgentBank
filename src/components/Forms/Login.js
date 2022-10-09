@@ -1,25 +1,32 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { userLogin } from "../../redux/userAction";
+import Error from "../Error/Error";
 
 const Login = () => {
-  const { userInfo, loading } = useSelector((state) => state.user);
+  const { loading, error, userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   const submitForm = (data) => {
     dispatch(userLogin(data));
   };
+
+  // TODO : la condition ne fonctionne pas correctement
   useEffect(() => {
     if (userInfo) {
-      navigate("/user");
+      // return window.location.assign('/user')
+      console.log("aaaa");
+      //il renvoie toujours cette condition peut importe que l'object soit vide ou non le else n'est jamais pris en compte.
+    }else{
+      console.log('bbbb')
     }
-  }, [navigate, userInfo]);
+  }, [userInfo]);
+
   return (
     <div className="login">
+      <Error>{error}</Error>
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit(submitForm)}>
         <div className="input-wrapper">

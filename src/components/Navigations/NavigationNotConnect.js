@@ -6,7 +6,24 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails } from "../../redux/userAction";
+import { useEffect } from "react";
+import { logout } from "../../redux/features/user";
+
 const NavigationNotConnect = (props) => {
+  const { userToken } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+
+    //TODO: Problème avec l'userToken la fonction n'est jamais exécuté
+    // useEffect(() => {
+    //   if (userToken) {
+    //     dispatch(getUserDetails);
+    //   }
+    // }, [userToken, dispatch]);
+
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="./">
@@ -18,23 +35,29 @@ const NavigationNotConnect = (props) => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <div className="all-info">
-          <div className="user-info">
-            <div className="user">
-              <FontAwesomeIcon className="userLogo" icon={faUser} />
+        {userToken ? (
+          <div className="all-info">
+            <div className="user-info">
+              <div className="user">
+                <FontAwesomeIcon className="userLogo" icon={faUser} />
+              </div>
+              <span>Loic</span>
             </div>
-            <span>Loic</span>
+            <span
+              onClick={() => dispatch(logout())}
+              className="button-sign-out"
+            >
+              {" "}
+              Sign out
+              <FontAwesomeIcon className="sign-out" icon={faSignOut} />
+            </span>
           </div>
-          <span className="button-sign-out">
-            {" "}
-            Sign out
-            <FontAwesomeIcon className="sign-out" icon={faSignOut} />
-          </span>
-        </div>
-        <Link className="main-nav-item" to="./sign-in">
-          <FontAwesomeIcon className="connect-user" icon={faCircleUser} />
-          Sign In
-        </Link>
+        ) : (
+          <Link className="main-nav-item" to="./sign-in">
+            <FontAwesomeIcon className="connect-user" icon={faCircleUser} />
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   );

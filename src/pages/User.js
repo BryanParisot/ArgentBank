@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-//import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import NavigationNotConnect from "../components/Navigations/NavigationNotConnect";
 import Profil from "../components/Forms/Profil";
+import { useSelector } from "react-redux";
 
 const User = ({ cancel }) => {
   const [displayForm, setDisplayForm] = useState(false);
-  // const [userName, setUsername] = useState("");
-  // const [userLastName, setUserLastName] = useState("");
+  const { userToken } = useSelector((state) => state.user);
+  console.log(userToken);
 
+  if (!userToken) {
+    window.location.href = "/sign-in";
+  }
   return (
     <div>
       <NavigationNotConnect img="../pictures/argentBankLogo.png" />
