@@ -1,0 +1,46 @@
+.main-nav {
+  .main-nav-item {
+    display: flex;
+    align-items: center;
+  }
+  .connect-user {
+    margin-right: 10px;
+  }
+
+  .all-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .button-sign-out {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      cursor: pointer;
+    }
+    .sign-out {
+      margin-right: 10px;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 20px;
+      .user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(186, 186, 186);
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+
+        .userLogo {
+          color: rgb(68, 68, 68);
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
