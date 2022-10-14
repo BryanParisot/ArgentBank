@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../../redux/userAction";
+import {  getUserDetails } from "../../redux/userAction";
 import { useEffect } from "react";
 import { logout } from "../../redux/features/user";
 
@@ -15,14 +15,11 @@ const NavigationNotConnect = (props) => {
   const { userToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-
-    //TODO: Problème avec l'userToken la fonction n'est jamais exécuté
-    // useEffect(() => {
-    //   if (userToken) {
-    //     dispatch(getUserDetails);
-    //   }
-    // }, [userToken, dispatch]);
-
+   useEffect(() => {
+     if (userToken) {
+      dispatch(getUserDetails());
+     }
+   }, [userToken, dispatch]);
 
   return (
     <nav className="main-nav">

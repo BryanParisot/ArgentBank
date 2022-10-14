@@ -13,14 +13,9 @@ const Login = () => {
     dispatch(userLogin(data));
   };
 
-  // TODO : la condition ne fonctionne pas correctement
   useEffect(() => {
-    if (userInfo) {
-      // return window.location.assign('/user')
-      console.log("aaaa");
-      //il renvoie toujours cette condition peut importe que l'object soit vide ou non le else n'est jamais pris en compte.
-    }else{
-      console.log('bbbb')
+    if (userInfo.status === 200) {
+      return window.location.assign("/user");
     }
   }, [userInfo]);
 

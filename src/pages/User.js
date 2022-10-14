@@ -4,14 +4,13 @@ import NavigationNotConnect from "../components/Navigations/NavigationNotConnect
 import Profil from "../components/Forms/Profil";
 import { useSelector } from "react-redux";
 
-const User = ({ cancel }) => {
+const User = () => {
   const [displayForm, setDisplayForm] = useState(false);
-  const { userToken } = useSelector((state) => state.user);
-  console.log(userToken);
-
+  const { userToken, userInfo } = useSelector((state) => state.user);
   if (!userToken) {
     window.location.href = "/sign-in";
   }
+
   return (
     <div>
       <NavigationNotConnect img="../pictures/argentBankLogo.png" />
@@ -20,10 +19,10 @@ const User = ({ cancel }) => {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+           <span>{userInfo?.body.firstName}</span> <span>{userInfo?.body.lastName}</span>
           </h1>
           {displayForm ? (
-            <Profil result={setDisplayForm} />
+            <Profil result={setDisplayForm} firstname={userInfo?.body.firstName} lastName={userInfo?.body.lastName} />
           ) : (
             <button
               onClick={() => setDisplayForm(true)}

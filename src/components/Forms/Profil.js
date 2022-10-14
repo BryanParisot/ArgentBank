@@ -9,12 +9,15 @@ const Profil = (props) => {
             type="text"
             name="firstName"
             id="firstName-id"
+            placeholder={props.firstname}
           />
           <input
             className="input"
             type="text"
             name="lastName"
             id="lastName-id"
+            placeholder={props.lastName}
+
           />
         </div>
         <div>

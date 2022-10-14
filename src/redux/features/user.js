@@ -49,9 +49,10 @@ const userSlice = createSlice({
     },
     [getUserDetails.rejected]: (state, { payload }) => {
       state.loading = false;
+      state.error = payload;
     },
   },
 });
 
 export const userReducer = userSlice.reducer;
-export const { logout } = userSlice.actions
+export const { logout } = userSlice.actions;
