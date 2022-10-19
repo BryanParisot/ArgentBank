@@ -6,10 +6,17 @@ import { useSelector } from "react-redux";
 
 const User = () => {
   const [displayForm, setDisplayForm] = useState(false);
-  const { userToken, userInfo } = useSelector((state) => state.user);
+  const { userToken, userInfo } = useSelector(
+    (state) => state.user
+  );
+
   if (!userToken) {
     window.location.href = "/sign-in";
   }
+
+  // if (suceesModified) {
+  //   setDisplayForm(true);
+  // }
 
   return (
     <div>
@@ -19,10 +26,15 @@ const User = () => {
           <h1>
             Welcome back
             <br />
-           <span>{userInfo?.body.firstName}</span> <span>{userInfo?.body.lastName}</span>
+            <span>{userInfo?.body?.firstName}</span>{" "}
+            <span>{userInfo?.body?.lastName}</span>
           </h1>
           {displayForm ? (
-            <Profil result={setDisplayForm} firstname={userInfo?.body.firstName} lastName={userInfo?.body.lastName} />
+            <Profil
+              result={setDisplayForm}
+              firstname={userInfo?.body?.firstName}
+              lastName={userInfo?.body?.lastName}
+            />
           ) : (
             <button
               onClick={() => setDisplayForm(true)}

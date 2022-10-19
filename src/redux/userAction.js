@@ -57,3 +57,29 @@ export const getUserDetails = createAsyncThunk(
     }
   }
 );
+
+export const modifiedProfile = createAsyncThunk(
+  "user/modifiedProfile",
+  async ({ firstName, lastName }, { getState, rejectWithValue }) => {
+    try {
+      const { user } = getState();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.userToken}`,
+        },
+      };
+      const { data } = await axios.put(
+        "http://localhost:3001/api/v1/user/profile",
+        { firstName, lastName },
+        config
+      );
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
