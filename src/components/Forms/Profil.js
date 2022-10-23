@@ -3,7 +3,16 @@ import { useDispatch } from "react-redux";
 import { modifiedProfile } from "../../redux/userAction";
 
 const Profil = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+    },
+  });
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
@@ -21,8 +30,12 @@ const Profil = (props) => {
               type="text"
               name="firstName"
               id="firstName"
-              // placeholder={props.firstname}
-              {...register("firstName")}
+              {...register("firstName", {
+                minLength: {
+                  value: 2,
+                  message: "Minimum 2 caractères",
+                },
+              })}
             />
           </label>
           <label htmlFor="lastName" className="LabelsInput">
@@ -33,11 +46,17 @@ const Profil = (props) => {
               type="text"
               name="lastName"
               id="lastName"
-              // placeholder={props.lastName}
-              {...register("lastName")}
+              {...register("lastName", {
+                minLength: {
+                  value: 2,
+                  message: "Minimum 2 caractères",
+                },
+              })}
             />
           </label>
         </div>
+        <span>{errors.firstName?.message}</span>
+        <span>{errors.lastName?.message}</span>
         <div>
           <button className="edit-button margin-right" type="submit">
             Save

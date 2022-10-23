@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer/Footer";
 import NavigationNotConnect from "../components/Navigations/NavigationNotConnect";
-import { useFetch } from "../utils/hooks";
 
 const Index = () => {
   return (

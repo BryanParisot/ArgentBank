@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { logout } from "../../redux/features/user";
 
 const NavigationNotConnect = (props) => {
-  const { userToken } = useSelector((state) => state.user);
+  const { userToken, userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
    useEffect(() => {
@@ -38,7 +38,7 @@ const NavigationNotConnect = (props) => {
               <div className="user">
                 <FontAwesomeIcon className="userLogo" icon={faUser} />
               </div>
-              <span>Loic</span>
+              <span>{userInfo?.body?.firstName}</span>
             </div>
             <span
               onClick={() => dispatch(logout())}
