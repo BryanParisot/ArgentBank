@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {  getUserDetails } from "../../redux/userAction";
 import { useEffect } from "react";
 import { logout } from "../../redux/features/user";
+import PropTypes from "prop-types";
+
 
 const NavigationNotConnect = (props) => {
   const { userToken, userInfo } = useSelector((state) => state.user);
@@ -59,5 +61,10 @@ const NavigationNotConnect = (props) => {
     </nav>
   );
 };
+
+NavigationNotConnect.propTypes = {
+  img: PropTypes.string,
+};
+
 
 export default NavigationNotConnect;
